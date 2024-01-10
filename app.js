@@ -16,6 +16,7 @@ function verificarChute() {
     let palavraTentativas = tentativas > 1 ? "tentativas" : "tentativa";
     let mensagemtentativas = ` Você descobriu o número secreto com ${tentativas} ${palavraTentativas}!`;
     exibirtextoNaTela("p", mensagemtentativas);
+    document.getElementById("reiniciar").removeAttribute("disabled");
   } else {
     if (chute > numeroSecreto) {
       exibirtextoNaTela("p", "O número secreto é menor");
@@ -23,9 +24,15 @@ function verificarChute() {
       exibirtextoNaTela("p", "O número secreto é maior");
     }
     tentativas++;
+    limparCampo();
   }
 }
 
 function gerarNumeroAleatorio() {
   return parseInt(Math.random() * 10 + 1);
+}
+
+function limparCampo() {
+  chute = document.querySelector("input");
+  chute.value = "";
 }
